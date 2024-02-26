@@ -5,7 +5,7 @@ This project is designed as a hands-on exploration of advanced data processing a
 
 #### Built With:
 - Azure Databrick 
-- PySpark
+- PySpark & SparkSQL
 - Distributed Computing
 - Azure Data Lake Storage
 - Parquet file (columnar format)
