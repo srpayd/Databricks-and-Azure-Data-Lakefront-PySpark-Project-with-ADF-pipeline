@@ -71,13 +71,25 @@ We will adopt a data-driven approach to analyze Formula 1 data, leveraging Pytho
 - Ability to roll back to a previous version 
 
 
-## IV. Prerequisites
+## IV. Usage
+
+### Pre-requisites
 
 Before setting up the project, ensure you have the following tools and accounts set up:
 - Azure subscription
 - Azure Databricks workspace
 - Azure Storage account with Data Lake enabled
 - Power BI account
+
+## Contact
+
+Serap Aydogdu - [LinkedIn](https://www.linkedin.com/in/srpayd/) | [Medium](https://medium.com/@srpayd)
+
+## Reference
+
+This study benefits from the "Ultimate SnowPro Core Certification Course & Exam - 2024" online course on Udemy. 
+
+
 
 
 
