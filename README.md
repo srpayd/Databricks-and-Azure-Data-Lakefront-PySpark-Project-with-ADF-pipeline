@@ -8,7 +8,7 @@ This project is designed as a hands-on exploration of advanced data processing a
 - PySpark & SparkSQL
 - Distributed Computing
 - Azure Data Lake Storage
-- Parquet file (columnar format)
+- Parquet file (semi-structured data & columnar format)
 - ETL pipeline: Bulk Loading
 - Visualization: Power BI
   
