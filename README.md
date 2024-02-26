@@ -87,7 +87,7 @@ Serap Aydogdu - [LinkedIn](https://www.linkedin.com/in/srpayd/) | [Medium](https
 
 ## Reference
 
-This study benefits from the "Azure Databricks & Spark For Data Engineers (PySpark / SQL)" online course on Udemy. [Link]([https://www.linkedin.com/in/srpayd/](https://www.udemy.com/course/azure-databricks-spark-core-for-data-engineers/?couponCode=KEEPLEARNING)https://www.udemy.com/course/azure-databricks-spark-core-for-data-engineers/?couponCode=KEEPLEARNING)  
+This study benefits from the "Azure Databricks & Spark For Data Engineers (PySpark / SQL)" online course on Udemy. [Link](https://www.linkedin.com/in/srpayd/](https://www.udemy.com/course/azure-databricks-spark-core-for-data-engineers/?couponCode=KEEPLEARNING)https://www.udemy.com/course/azure-databricks-spark-core-for-data-engineers/?couponCode=KEEPLEARNING)  
 
 
 
