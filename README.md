@@ -9,7 +9,7 @@ This project is designed as a hands-on exploration of advanced data processing a
 - Distributed Computing
 - Azure Data Lake Storage
 - Parquet file (semi-structured data & columnar format)
-- ETL pipeline: Bulk Loading
+- ETL pipeline: Azure Data Factory
 - Visualization: Power BI
   
 ## I. Solution Architecture Overview <be>
