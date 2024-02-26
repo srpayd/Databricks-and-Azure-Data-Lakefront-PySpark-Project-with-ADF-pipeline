@@ -4,7 +4,7 @@
 This project is designed as a hands-on exploration of advanced data processing and analytics technologies, with a focus on building and optimizing an ETL pipeline. The goal is to gain practical experience with Azure Databricks, PySpark for distributed computing, and Azure Data Lake Storage for handling large-scale data. An important aspect of this project is working with Parquet files, a semi-structured columnar format ideal for optimized data storage. The ETL pipeline is structured for bulk loading efficiency, and the outcome of the data processing is visualized using Power BI, offering insights through rich and interactive dashboards.
 
 #### Built With:
-- Azure Databrick 
+- Azure Databricks
 - PySpark & SparkSQL
 - Distributed Computing
 - Azure Data Lake Storage
@@ -14,7 +14,7 @@ This project is designed as a hands-on exploration of advanced data processing a
   
 ## I. Solution Architecture Overview <be>
 
-This diagram represents the solution architecture for the data processing workflow of the project. It starts with data extraction through an API, then moves to raw and staged data layers in Azure Data Lake, transformation through Azure Databricks, and finally analysis and reporting in Power BI.
+This diagram represents the solution architecture for the project's data processing workflow. It starts with data extraction through an API, then moves to raw and staged data layers in Azure Data Lake, transformation through Azure Databricks, and finally, analysis and reporting in Power BI.
 
 
 ![image](https://github.com/srpayd/Databricks-Spark---Azure-Data-Lake/assets/39004568/5c0f4136-ace2-44d1-ae3b-7e8cabe92293)
