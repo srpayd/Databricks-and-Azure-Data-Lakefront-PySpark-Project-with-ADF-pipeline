@@ -57,27 +57,27 @@ We will adopt a data-driven approach to analyze Formula 1 data, leveraging Pytho
 - Uncover patterns and correlations within the data to better understand the factors influencing race outcomes i.e. dominant drivers, dominant teams
 - Create interactive Databricks visualizations and dashboards to showcase our findings and engage with the Formula 1 community.
 - Explore opportunities for further research and analysis in the field of motorsport analytics.
-
+<br><br>
 #### d. Scheduling Requirements 
 
 - Schedule to run every Sunday 10PM
 - Ability to monitor pipelines
 - Ability to re-run failed pipelines
 - Ability to set-up alerts on failures
-
-
+<br><br>
 #### e. Misc Requirements 
 
 - Ability to see history and time travel
 - Ability to roll back to a previous version 
 
 
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ## IV. Prerequisites
 
-What things you need to install the software and how to install them.
+Before setting up the project, ensure you have the following tools and accounts set up:
+- Azure subscription
+- Azure Databricks workspace
+- Azure Storage account with Data Lake enabled
+- Power BI account
 
 
 
