@@ -25,6 +25,8 @@ This diagram represents the solution architecture for the data processing workfl
 #### a. About the Data
 The Ergast API provides a comprehensive database of Formula 1 data, including information on circuits, races, drivers, constructors, qualifying sessions, lap times, pit stops, and much more. Our project aims to leverage this rich dataset to uncover insights, analyze trends, and visualize key metrics related to Formula 1 racing.
 
+![image](https://github.com/srpayd/Databricks-Spark-Project-using-Azure-Data-Lake/assets/39004568/662b8239-2e29-4e99-a481-507ff2401142)
+
 #### b. Project Goals
 Gain insights into the performance of drivers and constructors across different seasons and races. Analyze race results, qualifying performances, and championship standings. Explore circuit characteristics, lap times, and strategic pit stop data. Visualize key metrics to enhance understanding and facilitate data-driven decision-making.
 
