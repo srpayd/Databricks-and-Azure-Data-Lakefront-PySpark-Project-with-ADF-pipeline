@@ -1,4 +1,4 @@
-# Databricks-Spark-Project-using-Azure-Data-Lake
+# Databricks & Azure Data Lakefront: PySpark Innovation Project
 
 
 This project is designed as a hands-on exploration of advanced data processing and analytics technologies, with a focus on building and optimizing an ETL pipeline. The goal is to gain practical experience with Azure Databricks, PySpark for distributed computing, and Azure Data Lake Storage for handling large-scale data. An important aspect of this project is working with Parquet files, a semi-structured columnar format ideal for optimized data storage. The ETL pipeline is structured for bulk loading efficiency, and the outcome of the data processing is visualized using Power BI, offering insights through rich and interactive dashboards.
