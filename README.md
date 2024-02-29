@@ -27,10 +27,13 @@ The Ergast API provides a comprehensive database of Formula 1 data, including in
 
 ![image](https://github.com/srpayd/Databricks-Spark-Project-using-Azure-Data-Lake/assets/39004568/662b8239-2e29-4e99-a481-507ff2401142)
 
-#### b. Project Goals
+#### b. Required DataFrames and features
+![image](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/7320ed0f-1435-4898-b2c0-87cc7a8f7acf)
+ 
+#### c. Project Goals
 Gain insights into the performance of drivers and constructors across different seasons and races. Analyze race results, qualifying performances, and championship standings. Explore circuit characteristics, lap times, and strategic pit stop data. Visualize key metrics to enhance understanding and facilitate data-driven decision-making.
 
-#### c. Approach
+#### d. Approach
 We will adopt a data-driven approach to analyze Formula 1 data, leveraging Python and PySpark for data manipulation, analysis, and visualization. By querying the Ergast API, we can retrieve relevant datasets and transform them into structured formats suitable for analysis. We will use various statistical techniques, visualization libraries, and machine learning algorithms to extract insights and patterns from the data.
 
 ## III. Project Requirements 
@@ -53,6 +56,7 @@ We will adopt a data-driven approach to analyze Formula 1 data, leveraging Pytho
 - Transformed data must be stored in columnar format
 - Transformation logic must be able to handle incremental load
 <br><br>
+
 #### c. BI Reporting Requirements 
 
 - Provide a comprehensive overview of Formula 1 racing, including historical insights and recent trends.
