@@ -8,8 +8,9 @@ This project is designed as a hands-on exploration of advanced data processing a
 - PySpark & SparkSQL
 - Distributed Computing
 - Azure Data Lake Storage
+- External Tables
 - Parquet file (semi-structured data & columnar format)
-- ETL Pipeline: (Tool: Azure Data Factory, Pipeline: Batch Processing, Loading Type: Incremental Loading)
+- ETL: Azure Data Factory {Pipeline: Batch, Loading Type: Incremental}
 - Visualization: Power BI
   
 ## I. Solution Architecture Overview <be>
