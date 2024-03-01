@@ -18,7 +18,8 @@ This project is designed as a hands-on exploration of advanced data processing a
 This diagram represents the solution architecture for the project's data processing workflow. It starts with data extraction through an API, then moves to raw and staged data layers in Azure Data Lake, transformation through Azure Databricks, and finally, analysis and reporting in Power BI.
 
 
-![image](https://github.com/srpayd/Databricks-Spark---Azure-Data-Lake/assets/39004568/5c0f4136-ace2-44d1-ae3b-7e8cabe92293)
+![Screenshot 2024-03-01 at 12 22 01 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/dba0c23a-5f5a-4217-a79b-b6db280b90be)
+
 
 ## II. Getting Started
 
