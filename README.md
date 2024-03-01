@@ -20,7 +20,6 @@ This diagram represents the solution architecture for the project's data process
 
 ![image](https://github.com/srpayd/Databricks-Spark---Azure-Data-Lake/assets/39004568/5c0f4136-ace2-44d1-ae3b-7e8cabe92293)
 
-
 ## II. Getting Started
 
 #### a. About the Data
