@@ -65,6 +65,12 @@ We will adopt a data-driven approach to analyze Formula 1 data, leveraging Pytho
 - Create interactive Databricks visualizations and dashboards to showcase our findings and engage with the Formula 1 community.
 - Explore opportunities for further research and analysis in the field of motorsport analytics.
 <br><br>
+ **The Top 10 Drivers of all the times (Databricks vizzes)** <br><br>
+![Screenshot 2024-03-01 at 4 32 13 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/9b4b9227-50cf-42c0-b7ab-b35bd5535db3)
+<br><br>
+ **The Top 5 Team and their history in Formula 1 (Databricks vizzes)** <br><br>
+ ![Screenshot 2024-03-01 at 4 34 25 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/9d508433-acb3-4ca8-a6ce-25bfe8ccada7)
+
 #### d. Scheduling Requirements 
 
 - Schedule to run every Sunday 10PM
