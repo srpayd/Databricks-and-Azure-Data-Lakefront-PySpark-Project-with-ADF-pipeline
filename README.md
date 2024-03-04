@@ -71,14 +71,21 @@ We will adopt a data-driven approach to analyze Formula 1 data, leveraging Pytho
  **The Top 5 Team and their history in Formula 1 (Databricks vizzes)** <br><br>
  ![Screenshot 2024-03-01 at 4 34 25 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/9d508433-acb3-4ca8-a6ce-25bfe8ccada7)
 
-#### d. Scheduling Requirements 
+#### d. Data Loading  
+The first 4 files will be our dimensional tables. We are loading them full load because they are historical data & quite small compared to the rest of the data files.<br>
+On the other hand, the last 4 files will represent our fact tables, they have more likely potential to grow fast and we obtain performance gains over frequently changing tables.
+
+![image](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/38af0fae-0d8b-45a8-8d45-619bf270d8a2)
+<br>
+
+#### e. Scheduling Requirements 
 
 - Schedule to run every Sunday 10PM
 - Ability to monitor pipelines
 - Ability to re-run failed pipelines
 - Ability to set-up alerts on failures
-<br><br>
-#### e. Misc Requirements 
+  
+#### f. Misc Requirements 
 
 - Ability to see history and time travel
 - Ability to roll back to a previous version 
