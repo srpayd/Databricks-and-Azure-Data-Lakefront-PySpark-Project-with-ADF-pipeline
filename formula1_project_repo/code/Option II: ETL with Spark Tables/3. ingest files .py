@@ -19,11 +19,26 @@
 
 # COMMAND ----------
 
-# MAGIC %run "../../../includes/config"
+dbutils.widgets.text("p_data_source", "")
+v_data_source = dbutils.widgets.get("p_data_source")
 
 # COMMAND ----------
 
-# MAGIC %run "../../../includes/common_functions"
+# default is our first historical folder with named 2021-03-21.
+dbutils.widgets.text("p_file_date", "2021-03-21")
+v_file_date = dbutils.widgets.get("p_file_date")
+
+# COMMAND ----------
+
+v_file_date
+
+# COMMAND ----------
+
+# MAGIC %run "../../includes/config"
+
+# COMMAND ----------
+
+# MAGIC %run "../../includes/common_functions"
 
 # COMMAND ----------
 
@@ -57,7 +72,7 @@ circuits_schema = StructType(fields = [StructField('circuitId', IntegerType(), F
 
 # Reading CSV files from Raw Container into Stage Container from ADLs.
 
-circuits_df = spark.read.csv(f"{raw_folder_path}/circuits.csv", header=True, schema=circuits_schema)
+circuits_df = spark.read.csv(f"{raw_folder_path}/{v_file_date}/circuits.csv", header=True, schema=circuits_schema)
 circuits_df.dtypes
 
 # COMMAND ----------
@@ -105,8 +120,10 @@ circuits_selected_df.show()
 
 from pyspark.sql.functions import current_timestamp, lit
 
-circuits_final_df = add_ingestion_date(circuits_selected_df) \
-                                        .withColumn('env', lit('production'))                     
+circuits_final_df = add_ingestion_date(circuits_selected_df, v_file_date) \
+                    .withColumn('env', lit('production'))
+
+             
 circuits_final_df.show()
 
 # COMMAND ----------
@@ -119,7 +136,7 @@ circuits_final_df.write.mode("overwrite").format("parquet").saveAsTable("formula
 
 # COMMAND ----------
 
-display(dbutils.fs.ls(presentation_folder_path))
+display(dbutils.fs.ls(stage_folder_path))
 
 # COMMAND ----------
 
@@ -143,7 +160,7 @@ races_schema = StructType(fields=[StructField("raceId", IntegerType(), False),
 
 # COMMAND ----------
 
-races_df = spark.read.csv(f"{raw_folder_path}/races.csv", header=True, schema=races_schema)
+races_df = spark.read.csv(f"{raw_folder_path}/{v_file_date}/races.csv", header=True, schema=races_schema)
 
 
 # COMMAND ----------
@@ -151,7 +168,8 @@ races_df = spark.read.csv(f"{raw_folder_path}/races.csv", header=True, schema=ra
 from pyspark.sql.functions import current_timestamp, to_timestamp, concat, col, lit
 
 races_with_timestamp_df = races_df.withColumn("ingestion_date", current_timestamp()) \
-                                  .withColumn("race_timestamp", to_timestamp(concat(races_df['date'], lit(' '), races_df['time']), 'yyyy-MM-dd HH:mm:ss'))
+                                  .withColumn("race_timestamp", to_timestamp(concat(races_df['date'], lit(' '), races_df['time']), 'yyyy-MM-dd HH:mm:ss')) \
+                                  .withColumn('file_date', lit(v_file_date)) 
 
 
 # COMMAND ----------
@@ -167,8 +185,13 @@ races_selected_df = races_with_timestamp_df.select(races_with_timestamp_df['race
                                                    races_with_timestamp_df['circuitId'].alias('circuit_id'),
                                                    races_with_timestamp_df['name'], 
                                                    races_with_timestamp_df['ingestion_date'], 
-                                                   races_with_timestamp_df['race_timestamp'])
+                                                   races_with_timestamp_df['race_timestamp'],
+                                                   races_with_timestamp_df['file_date'])
 
+
+# COMMAND ----------
+
+races_selected_df.show()
 
 # COMMAND ----------
 
@@ -195,7 +218,7 @@ constructors_schema = "constructorId INT, constructorRef STRING, name STRING, na
 
 # COMMAND ----------
 
-constructor_df = spark.read.json(f"{raw_folder_path}/constructors.json", schema = constructors_schema)
+constructor_df = spark.read.json(f"{raw_folder_path}/{v_file_date}/constructors.json", schema = constructors_schema)
 
 # COMMAND ----------
 
@@ -207,7 +230,12 @@ constructor_dropped_df = constructor_df.drop(constructor_df['url'])
 ### Rename & New Column
 constructor_final_df = constructor_dropped_df.withColumnRenamed("constructorId", "constructor_id") \
                                              .withColumnRenamed("constructorRef", "constructor_ref") \
-                                             .withColumn("ingestion_date", current_timestamp())
+                                             .withColumn("ingestion_date", current_timestamp()) \
+                                             .withColumn('file_date', lit(v_file_date)) 
+
+# COMMAND ----------
+
+constructor_final_df.show()
 
 # COMMAND ----------
 
@@ -253,7 +281,7 @@ drivers_schema = StructType(fields=[StructField("driverId", IntegerType(), False
 
 # COMMAND ----------
 
-drivers_df = spark.read.json(f"{raw_folder_path}/drivers.json", schema = drivers_schema)
+drivers_df = spark.read.json(f"{raw_folder_path}/{v_file_date}/drivers.json", schema = drivers_schema)
 
 # COMMAND ----------
 
@@ -264,9 +292,14 @@ from pyspark.sql.functions import col, concat, current_timestamp, lit
 drivers_with_columns_df = drivers_df.withColumnRenamed("driverId", "driver_id") \
                                     .withColumnRenamed("driverRef", "driver_ref") \
                                     .withColumn("ingestion_date", current_timestamp()) \
-                                    .withColumn("name", concat(drivers_df["name"].forename, lit(" "), drivers_df["name"].surname))
+                                    .withColumn("name", concat(drivers_df["name"].forename, lit(" "), drivers_df["name"].surname)) \
+                                    .withColumn('file_date', lit(v_file_date)) 
 
 drivers_final_df = drivers_with_columns_df.drop(drivers_with_columns_df["url"])
+
+# COMMAND ----------
+
+drivers_final_df.show()
 
 # COMMAND ----------
 
@@ -304,12 +337,12 @@ results_schema = StructType(fields=[StructField("resultId", IntegerType(), False
 
 # COMMAND ----------
 
-results_df = spark.read.json(f"{raw_folder_path}/results.json", schema=results_schema )
+results_df = spark.read.json(f"{raw_folder_path}/{v_file_date}/results.json", schema=results_schema )
 
 # COMMAND ----------
 
 # Transformation
-from pyspark.sql.functions import current_timestamp
+from pyspark.sql.functions import current_timestamp, lit
 
 results_with_columns_df = results_df.withColumnRenamed("resultId", "result_id") \
                                     .withColumnRenamed("raceId", "race_id") \
@@ -320,17 +353,27 @@ results_with_columns_df = results_df.withColumnRenamed("resultId", "result_id") 
                                     .withColumnRenamed("fastestLap", "fastest_lap") \
                                     .withColumnRenamed("fastestLapTime", "fastest_lap_time") \
                                     .withColumnRenamed("fastestLapSpeed", "fastest_lap_speed") \
-                                    .withColumn("ingestion_date", current_timestamp()) 
-
+                                    .withColumn("ingestion_date", current_timestamp()) \
+                                    .withColumn('file_date', lit(v_file_date))  
 
 results_final_df = results_with_columns_df.drop(results_with_columns_df["statusId"])
 
 
 # COMMAND ----------
 
-# results_final_df.write.partitionBy('race_id').parquet(f"{stage_folder_path}/results", mode="overwrite")
+output_df = re_arrange_partition_column(results_final_df, 'race_id')
 
-results_final_df.write.mode("overwrite").partitionBy('race_id').format("parquet").saveAsTable("formuladl101_processed.results")
+# COMMAND ----------
+
+overwrite_partition(output_df, 'formuladl101_processed', 'results', 'race_id')
+
+# COMMAND ----------
+
+# MAGIC %sql 
+# MAGIC SELECT race_id, COUNT(*)
+# MAGIC FROM formuladl101_processed.results
+# MAGIC GROUP BY race_id
+# MAGIC ORDER BY race_id DESC
 
 # COMMAND ----------
 
@@ -358,7 +401,7 @@ pit_stops_schema = StructType(fields=[StructField("raceId", IntegerType(), False
 
 # COMMAND ----------
 
-pit_stops_df = spark.read.json(f"{raw_folder_path}/pit_stops.json" , multiLine=True, schema=pit_stops_schema)
+pit_stops_df = spark.read.json(f"{raw_folder_path}/{v_file_date}/pit_stops.json" , multiLine=True, schema=pit_stops_schema)
 
 # COMMAND ----------
 
@@ -372,13 +415,20 @@ from pyspark.sql.functions import current_timestamp
 
 final_df = pit_stops_df.withColumnRenamed("driverId", "driver_id") \
                        .withColumnRenamed("raceId", "race_id") \
-                       .withColumn("ingestion_date", current_timestamp())
+                       .withColumn("ingestion_date", current_timestamp()) \
+                       .withColumn('file_date', lit(v_file_date))  
 
 # COMMAND ----------
 
-# final_df.write.mode("overwrite").parquet(f"{stage_folder_path}/pit_stops")
-final_df.write.mode("overwrite").format("parquet").saveAsTable("formuladl101_processed.pit_stops")
+final_df.printSchema()
 
+# COMMAND ----------
+
+output_df = re_arrange_partition_column(final_df, 'race_id')
+
+# COMMAND ----------
+
+overwrite_partition(output_df, 'formuladl101_processed', 'pit_stops', 'race_id')
 
 # COMMAND ----------
 
@@ -402,21 +452,30 @@ lap_times_schema = StructType(fields=[StructField("raceId", IntegerType(), False
 # COMMAND ----------
 
 lap_times_df = spark.read \
-.schema(lap_times_schema) \
-.csv(f"{raw_folder_path}/lap_times")
+                    .schema(lap_times_schema) \
+                    .csv(f"{raw_folder_path}/{v_file_date}/lap_times")
+
 
 # COMMAND ----------
 
 from pyspark.sql.functions import current_timestamp
 
 final_df = lap_times_df.withColumnRenamed("driverId", "driver_id") \
-.withColumnRenamed("raceId", "race_id") \
-.withColumn("ingestion_date", current_timestamp())
+                        .withColumnRenamed("raceId", "race_id") \
+                        .withColumn("ingestion_date", current_timestamp()) \
+                        .withColumn('file_date', lit(v_file_date))  
 
 # COMMAND ----------
 
-# final_df.write.mode("overwrite").parquet(f"{stage_folder_path}/lap_times")
-final_df.write.mode("overwrite").format("parquet").saveAsTable("formuladl101_processed.lap_times")
+final_df.printSchema()
+
+# COMMAND ----------
+
+output_df = re_arrange_partition_column(final_df, 'race_id')
+
+# COMMAND ----------
+
+overwrite_partition(output_df, 'formuladl101_processed', 'lap_times', 'race_id')
 
 # COMMAND ----------
 
@@ -442,29 +501,33 @@ qualifying_schema = StructType(fields=[StructField("qualifyId", IntegerType(), F
 # COMMAND ----------
 
 qualifying_df = spark.read \
-.schema(qualifying_schema) \
-.option("multiLine", True) \
-.json(f"{raw_folder_path}/qualifying")
+                    .schema(qualifying_schema) \
+                    .option("multiLine", True) \
+                    .json(f"{raw_folder_path}/{v_file_date}/qualifying")
 
 # COMMAND ----------
 
 from pyspark.sql.functions import current_timestamp
 
 final_df = qualifying_df.withColumnRenamed("qualifyId", "qualify_id") \
-.withColumnRenamed("driverId", "driver_id") \
-.withColumnRenamed("raceId", "race_id") \
-.withColumnRenamed("constructorId", "constructor_id") \
-.withColumn("ingestion_date", current_timestamp())
+                        .withColumnRenamed("driverId", "driver_id") \
+                        .withColumnRenamed("raceId", "race_id") \
+                        .withColumnRenamed("constructorId", "constructor_id") \
+                        .withColumn("ingestion_date", current_timestamp()) \
+                        .withColumn('file_date', lit(v_file_date))  
 
 # COMMAND ----------
 
-# final_df.write.mode("overwrite").parquet(f"{stage_folder_path}/qualifying")
-final_df.write.mode("overwrite").format("parquet").saveAsTable("formuladl101_processed.qualifying")
+final_df.printSchema()
+
+# COMMAND ----------
+
+output_df = re_arrange_partition_column(final_df, 'race_id')
+
+# COMMAND ----------
+
+overwrite_partition(output_df, 'formuladl101_processed', 'qualifying', 'race_id')
 
 # COMMAND ----------
 
 dbutils.notebook.exit('Success')
-
-# COMMAND ----------
-
-
