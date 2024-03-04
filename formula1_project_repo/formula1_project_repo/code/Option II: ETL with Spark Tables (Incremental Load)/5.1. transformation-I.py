@@ -57,9 +57,8 @@ circuits_df = spark.read.parquet(f"{stage_folder_path}/circuits") \
 # COMMAND ----------
 
 races_df = spark.read.parquet(f"{stage_folder_path}/races") \
-                     .withColumnRenamed("name", "race_name") \
-                     .withColumnRenamed("race_timestamp", "race_date") 
-
+.withColumnRenamed("name", "race_name") \
+.withColumnRenamed("race_timestamp", "race_date") 
 
 # COMMAND ----------
 
@@ -124,13 +123,7 @@ display(final_df.filter((final_df["race_year"] == 2020) & (final_df["race_name"]
 
 # COMMAND ----------
 
-# final_df.write.mode("overwrite").format("parquet").saveAsTable("formuladl101_presentation.race_results")
 overwrite_partition(final_df, 'formuladl101_presentation', 'race_results', 'race_id')
-
-# COMMAND ----------
-
-# MAGIC %sql 
-# MAGIC SELECT * FROM formuladl101_presentation.race_results
 
 # COMMAND ----------
 
