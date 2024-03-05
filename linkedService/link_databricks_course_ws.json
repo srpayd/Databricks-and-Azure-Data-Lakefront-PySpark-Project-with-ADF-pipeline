@@ -1,0 +1,8 @@
+{
+	"name": "link_databricks_course_ws",
+	"properties": {
+		"type": "AzureDatabricks",
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}
