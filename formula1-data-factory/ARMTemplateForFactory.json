@@ -14,6 +14,10 @@
 		"ls_databricks_course_ws_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0224-205957-qpncvafw"
+		},
+		"formula1-adf-trigger_properties_pipeline_parameters_p_window_end_date": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
 	},
 	"variables": {
@@ -289,6 +293,15 @@
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Stopped",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "pipeline_formula1",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"p_window_end_date": "[parameters('formula1-adf-trigger_properties_pipeline_parameters_p_window_end_date')]"
+					}
+				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
 					"frequency": "Hour",
@@ -303,7 +316,9 @@
 					"dependsOn": []
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline_formula1')]"
+			]
 		}
 	]
 }

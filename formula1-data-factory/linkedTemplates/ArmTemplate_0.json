@@ -14,6 +14,10 @@
 		"ls_databricks_course_ws_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0224-205957-qpncvafw"
+		},
+		"formula1-adf-trigger_properties_pipeline_parameters_p_window_end_date": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
 	},
 	"variables": {
@@ -48,29 +52,6 @@
 					"authentication": "MSI",
 					"workspaceResourceId": "/subscriptions/80234f7c-2a54-4d24-87ad-73d34ff560b0/resourceGroups/databricks-course-rg/providers/Microsoft.Databricks/workspaces/databricks-course-ws",
 					"existingClusterId": "[parameters('ls_databricks_course_ws_properties_typeProperties_existingClusterId')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/formula1-adf-trigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 168,
-					"startTime": "2021-03-15T22:00:00Z",
-					"endTime": "2021-04-25T22:00:00Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 1,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
 				}
 			},
 			"dependsOn": []
@@ -303,6 +284,40 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/link_databricks_course_ws')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/formula1-adf-trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "pipeline_formula1",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"p_window_end_date": "[parameters('formula1-adf-trigger_properties_pipeline_parameters_p_window_end_date')]"
+					}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Hour",
+					"interval": 168,
+					"startTime": "2021-03-15T22:00:00Z",
+					"endTime": "2021-04-25T22:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 1,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline_formula1')]"
 			]
 		}
 	]

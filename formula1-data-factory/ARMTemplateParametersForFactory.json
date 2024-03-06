@@ -10,6 +10,9 @@
 		},
 		"ls_databricks_course_ws_properties_typeProperties_existingClusterId": {
 			"value": "0224-205957-qpncvafw"
+		},
+		"formula1-adf-trigger_properties_pipeline_parameters_p_window_end_date": {
+			"value": "@trigger().outputs.windowEndTime"
 		}
 	}
 }
