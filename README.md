@@ -80,24 +80,18 @@ On the other hand, the last 4 files will represent our fact tables, they have mo
 
 #### e. Scheduling Requirements 
 
-- Schedule to run every Sunday 10PM
+- Schedule to run every Sunday 10 PM
 - Ability to monitor pipelines
 - Ability to re-run failed pipelines
 - Ability to set-up alerts on failures
+- Ability to integrate ADF pipeline with GitHub 
 
-  <h3 align="center">Connecting Databricks repo with ADF pipelin</h3>
+  <h3 align="center">Running Databricks Notebooks through ADF Pipeline </h3>
   
-  ![Screenshot 2024-03-05 at 1 26 19 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/b2a978ba-5265-4c55-9938-d94b79b043e3)
-
-<h3 align="center">Overview of running Databricks clusters for ADF pipeline</h3> 
-
-  ![Screenshot 2024-03-06 at 7 53 31 AM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/199d6705-e7e9-4abb-9c6f-430ef3c223c0)
-                              
-<h3 align="center">Execution Log</h3> 
-
-  ![Screenshot 2024-03-06 at 8 04 17 AM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/856e2fc5-d4b3-46cf-b05e-2a78812100d2)
-                                             
-  
+  ![image](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/0b5bdea8-a7ff-4727-a6ef-99255823bb2a)                    
+<br>
+Note: I also integrated the ADF Pipeline into GitHub. To see the jobs' execution logs, please visit the <pipeline> under the root of the Github repo. <br><br
+                                                                                                                                   >
 #### f. Misc Requirements 
 
 - Ability to see history and time travel
