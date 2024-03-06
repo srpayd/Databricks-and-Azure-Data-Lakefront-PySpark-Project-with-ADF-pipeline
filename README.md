@@ -10,8 +10,8 @@ This project is designed as a hands-on exploration of advanced data processing a
 - Azure Data Lake Storage
 - External Tables
 - Parquet file (semi-structured data & columnar format)
-- partitioning
-- ETL: Azure Data Factory {Pipeline: Batch, Loading Type: Incremental}
+- Partitioning 
+- ETL Pipeline: Azure Data Factory 
 - Visualization: Power BI
   
 ## I. Solution Architecture Overview <be>
