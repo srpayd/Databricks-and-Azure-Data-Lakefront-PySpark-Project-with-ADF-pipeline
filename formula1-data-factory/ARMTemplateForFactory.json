@@ -55,6 +55,177 @@
 							"referenceName": "link_databricks_course_ws",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "transformation-1 race-results",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ingest_data_files",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/5.1. transformation-I",
+							"baseParameters": {
+								"p_data_source": {
+									"value": "@variables('v_data_source')",
+									"type": "Expression"
+								},
+								"p_file_date": {
+									"value": "@formatDateTime(pipeline().parameters.p_window_end_date, 'yyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "link_databricks_course_ws",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "transformation-2 driver_standings",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "transformation-1 race-results",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/5.2. transformation-II",
+							"baseParameters": {
+								"p_data_source": {
+									"value": "@variables('v_data_source')",
+									"type": "Expression"
+								},
+								"p_file_date": {
+									"value": "@formatDateTime(pipeline().parameters.p_window_end_date, 'yyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "link_databricks_course_ws",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "transformation-3 constructor_standings",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "transformation-1 race-results",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/5.3. transformation-III",
+							"baseParameters": {
+								"p_data_source": {
+									"value": "@variables('v_data_source')",
+									"type": "Expression"
+								},
+								"p_file_date": {
+									"value": "@formatDateTime(pipeline().parameters.p_window_end_date, 'yyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "link_databricks_course_ws",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "report-I",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "transformation-2 driver_standings",
+								"dependencyConditions": [
+									"Completed"
+								]
+							},
+							{
+								"activity": "transformation-3 constructor_standings",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/6.1. report-I"
+						},
+						"linkedServiceName": {
+							"referenceName": "link_databricks_course_ws",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "report-II",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "report-I",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/6.2. report-II"
+						},
+						"linkedServiceName": {
+							"referenceName": "link_databricks_course_ws",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"concurrency": 1,
