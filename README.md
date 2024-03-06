@@ -90,8 +90,8 @@ On the other hand, the last 4 files will represent our fact tables, they have mo
   
   ![image](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/0b5bdea8-a7ff-4727-a6ef-99255823bb2a)                    
 <br>
-Note: I also integrated the ADF Pipeline into GitHub. To see the jobs' execution logs, please visit the <pipeline> under the root of the Github repo. <br><br
-                                                                                                                                   >
+Note: I also integrated the ADF Pipeline into GitHub. To see the jobs' execution logs, please visit the <pipeline> under the root of the Github repo. <br><br>
+
 #### f. Misc Requirements 
 
 - Ability to see history and time travel
