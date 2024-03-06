@@ -1,0 +1,51 @@
+{
+	"name": "pipeline_formula1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ingest_data_files",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/3. ingest files",
+					"baseParameters": {
+						"p_data_source": {
+							"value": "@variables('v_data_source')",
+							"type": "Expression"
+						},
+						"p_file_date": {
+							"value": "@formatDateTime(pipeline().parameters.p_window_end_date, 'yyy-MM-dd')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "link_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"concurrency": 1,
+		"parameters": {
+			"p_window_end_date": {
+				"type": "string",
+				"defaultValue": "2021-03-21"
+			}
+		},
+		"variables": {
+			"v_data_source": {
+				"type": "String",
+				"defaultValue": "testing"
+			}
+		},
+		"annotations": []
+	}
+}
