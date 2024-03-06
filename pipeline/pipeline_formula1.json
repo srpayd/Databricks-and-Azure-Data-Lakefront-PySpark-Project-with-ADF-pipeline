@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Repos/srpayd.sf@gmail.com/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/3. ingest files",
+					"notebookPath": "/Repos/<subscriber_address>/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/formula1_project_repo/code/Option II: ETL with Spark Tables (Incremental Load)/3. ingest files",
 					"baseParameters": {
 						"p_data_source": {
 							"value": "@variables('v_data_source')",
