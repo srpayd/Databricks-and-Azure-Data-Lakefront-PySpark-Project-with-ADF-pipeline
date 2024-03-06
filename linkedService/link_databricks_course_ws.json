@@ -4,10 +4,10 @@
         "annotations": [],
         "type": "AzureDatabricks",
         "typeProperties": {
-            "domain": "<URL of the Azure Databricks workspace>",
-            "authentication": "<Authentication method (e.g., Managed Service Identity)>",
-            "workspaceResourceId": "<Resource ID of the Azure Databricks workspace>",
-            "existingClusterId": "<ID of the existing Databricks cluster>"
+            "domain": <URL of the Azure Databricks workspace>,
+            "authentication": <Authentication method (e.g., Managed Service Identity)>,
+            "workspaceResourceId": <Resource ID of the Azure Databricks workspace>,
+            "existingClusterId": <ID of the existing Databricks cluster>
         }
     },
     "type": "Microsoft.DataFactory/factories/linkedservices"
