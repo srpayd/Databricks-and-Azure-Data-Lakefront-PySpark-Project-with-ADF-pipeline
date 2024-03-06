@@ -18,8 +18,7 @@ This project is designed as a hands-on exploration of advanced data processing a
 
 This diagram represents the solution architecture for the project's data processing workflow. It starts with data extraction through an API, then moves to raw and staged data layers in Azure Data Lake, transformation through Azure Databricks, and finally, analysis and reporting in Power BI.
 
-
-![Screenshot 2024-03-01 at 12 22 01 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Innovation-Project/assets/39004568/dba0c23a-5f5a-4217-a79b-b6db280b90be)
+![Screenshot 2024-03-06 at 9 46 49 AM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/67a82810-5797-4ca4-a023-6bf337d3fedb)
 
 
 ## II. Getting Started
@@ -85,6 +84,19 @@ On the other hand, the last 4 files will represent our fact tables, they have mo
 - Ability to monitor pipelines
 - Ability to re-run failed pipelines
 - Ability to set-up alerts on failures
+
+  <h3 align="center">Connecting Databricks repo with ADF pipelin</h3>
+  
+  ![Screenshot 2024-03-05 at 1 26 19 PM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/b2a978ba-5265-4c55-9938-d94b79b043e3)
+
+<h3 align="center">Overview of running Databricks clusters for ADF pipeline</h3> 
+
+  ![Screenshot 2024-03-06 at 7 53 31 AM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/199d6705-e7e9-4abb-9c6f-430ef3c223c0)
+                              
+<h3 align="center">Execution Log</h3> 
+
+  ![Screenshot 2024-03-06 at 8 04 17 AM](https://github.com/srpayd/Databricks-and-Azure-Data-Lakefront-PySpark-Project-with-ADF-pipeline/assets/39004568/856e2fc5-d4b3-46cf-b05e-2a78812100d2)
+                                             
   
 #### f. Misc Requirements 
 
