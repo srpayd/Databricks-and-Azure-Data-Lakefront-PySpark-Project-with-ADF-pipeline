@@ -4,10 +4,10 @@
 		"annotations": [],
 		"type": "AzureDatabricks",
 		"typeProperties": {
-			"domain": "https://adb-3361432330318871.11.azuredatabricks.net",
+			"domain": "https://....",
 			"authentication": "MSI",
-			"workspaceResourceId": "/subscriptions/80234f7c-2a54-4d24-87ad-73d34ff560b0/resourceGroups/databricks-course-rg/providers/Microsoft.Databricks/workspaces/databricks-course-ws",
-			"existingClusterId": "0224-205957-qpncvafw"
+			"workspaceResourceId": "/subscriptions/<subscrition_id>/resourceGroups/<azure-resource-group-name>/providers/Microsoft.Databricks/workspaces/<azure-workspace-name>",
+			"existingClusterId": "<cluster_id>"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
